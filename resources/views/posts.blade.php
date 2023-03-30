@@ -43,7 +43,7 @@
                     </div>
                 </form>
             </div>
-            <div class="mt-12 relative">
+            <div class="relative">
                 <form action="{{route('posts.search')}}" method="GET" class="mb-5">
                     @csrf
                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
