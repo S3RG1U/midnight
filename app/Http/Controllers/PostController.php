@@ -12,17 +12,22 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('user_id', auth()->user()->id)->paginate(4);
+        $posts = Post::paginate(4);
 
         return view('posts', compact('posts'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource after search.
      */
-    public function create()
+    public function search(Request $request)
     {
-        //
+        $posts = Post::query()
+            ->when($request->input('search'), fn($q, $s) => $q->where('title', 'like', "%$s%")
+                ->orWhere('content', 'like', "%$s%"))
+            ->paginate(4);
+
+        return view('posts', compact('posts'));
     }
 
     /**
@@ -35,9 +40,7 @@ class PostController extends Controller
             'content'=>'required'
         ]);
 
-        $attributes['user_id'] = auth()->id();
-
-        Post::create($attributes);
+        auth()->user()->posts()->create($attributes);
 
         return redirect('/posts');
     }
@@ -45,32 +48,22 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-        //
-    }
+        $post = Post::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit()
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request)
-    {
-        //
+        return view('show', compact('post'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return redirect('/posts');
     }
 }
