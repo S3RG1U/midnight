@@ -1,6 +1,6 @@
 <x-app-layout>
     @section('content')
-        <div class="max-w-7xl mx-auto p-6 lg:p-8 flex space-x-24">
+        <div class="max-w-7xl mx-auto p-6 lg:p-8 lg:flex lg:space-x-24">
             <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                 <p class="text-white font-semibold text-lg text-center mb-6">Add a new post</p>
                 @if ($errors->any())
@@ -43,7 +43,7 @@
                     </div>
                 </form>
             </div>
-            <div class="relative">
+            <div class="relative lg:mt-0 mt-10">
                 <form action="{{route('posts.search')}}" method="GET" class="mb-5">
                     @csrf
                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
