@@ -51,3 +51,7 @@ Pentru a putea rula testele este nevoie ca in fisierul "phpunit.xml" sa fie adau
 
 Pentru a putea utiliza o alta baza de date, nu pe acea aflata in productie
 Comanda de rulare a testelor este: [vendor/bin/phpunit tests/Feature/PostsTest.php]
+
+##Other specifications
+* Aplicatie are instalata pachetul predefinit de Laravel de autentificare. Deci rutele "/login", "/register" au fost create automat.
+* Rutele/callurile API sunt protejate prin middelware ul de autorizare. 
